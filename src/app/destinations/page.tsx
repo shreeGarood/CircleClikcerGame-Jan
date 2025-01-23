@@ -159,55 +159,55 @@ export default function GamePage() {
 
   const highestScore = sortedScores[0];
 
-  const handleRematch = (id: string) => {
-    setIsGameActive(true);
-    setScore(0); 
-    scoreRef.current = 0; 
-    setTimer(gameDuration); 
+  // const handleRematch = (id: string) => {
+  //   setIsGameActive(true);
+  //   setScore(0); 
+  //   scoreRef.current = 0; 
+  //   setTimer(gameDuration); 
 
-    setTimeout(() => {
-      setIsGameActive(false);
-      updateScore(id, scoreRef.current); 
-    }, gameDuration * 1000);
-  };
+  //   setTimeout(() => {
+  //     setIsGameActive(false);
+  //     updateScore(id, scoreRef.current); 
+  //   }, gameDuration * 1000);
+  // };
 
-  const updateScore = async (id: string, newScore: number) => {
-    try {
-      const response = await fetch(`/api/scores/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ score: newScore }),
-      });
+  // const updateScore = async (id: string, newScore: number) => {
+  //   try {
+  //     const response = await fetch(`/api/scores/${id}`, {
+  //       method: "PATCH",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ score: newScore }),
+  //     });
 
-      if (response.ok) {
-        const updatedScore = await response.json();
-        setScores((prevScores) =>
-          prevScores.map((score) =>
-            score.id === id ? { ...score, score: updatedScore.score } : score
-          )
-        );
-        setLatestScore(updatedScore);
+  //     if (response.ok) {
+  //       const updatedScore = await response.json();
+  //       setScores((prevScores) =>
+  //         prevScores.map((score) =>
+  //           score.id === id ? { ...score, score: updatedScore.score } : score
+  //         )
+  //       );
+  //       setLatestScore(updatedScore);
 
-        setSnackbar({
-          open: true,
-          message: "Score updated successfully!",
-          severity: "success",
-        });
+  //       setSnackbar({
+  //         open: true,
+  //         message: "Score updated successfully!",
+  //         severity: "success",
+  //       });
 
-        setTimeout(() => setLatestScore(null), 3000); 
-      } else {
-        const errorData = await response.json();
-        console.error("Error response:", errorData);
-        throw new Error(errorData.error || "Failed to update score");
-      }
-    } catch (error) {
-      setSnackbar({
-        open: true,
-        message: (error as Error).message || "An unexpected error occurred.",
-        severity: "error",
-      });
-    }
-  };
+  //       setTimeout(() => setLatestScore(null), 3000); 
+  //     } else {
+  //       const errorData = await response.json();
+  //       console.error("Error response:", errorData);
+  //       throw new Error(errorData.error || "Failed to update score");
+  //     }
+  //   } catch (error) {
+  //     setSnackbar({
+  //       open: true,
+  //       message: (error as Error).message || "An unexpected error occurred.",
+  //       severity: "error",
+  //     });
+  //   }
+  // };
 
   // const handleDelete = async (id: string) => {
   //   try {
@@ -477,7 +477,7 @@ export default function GamePage() {
                     <TableCell>
                       <Button
                         variant="outlined"
-                        onClick={() => handleRematch(score.id)}
+                        // onClick={() => handleRematch(score.id)}
                         sx={{
                           borderColor: "#f4d03f",
                           color: "#f4d03f",

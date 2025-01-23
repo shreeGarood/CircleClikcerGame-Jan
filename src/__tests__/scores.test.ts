@@ -4,7 +4,7 @@
 
 import { POST, GET, DELETE as DELETE_ALL } from '@/app/api/scores/route';
 // import { PATCH, DELETE as DELETE_SINGLE } from '@/app/api/scores/[id]/route';
-import { PATCH} from '@/app/api/scores/[id]/route';
+// import { PATCH} from '@/app/api/scores/[id]/route';
 import { addDoc, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { NextRequest } from 'next/server';
 
@@ -99,22 +99,22 @@ describe('API Routes /api/scores', () => {
     expect(response.status).toBe(500);
   });
 
-  test('PATCH /api/scores/:id updates a score', async () => {
-    (updateDoc as jest.Mock).mockResolvedValue(undefined);
-    (doc as jest.Mock).mockReturnValue({});
-    const request = new NextRequest('http://localhost/api/scores/abc', {
-      method: 'PATCH',
-      body: JSON.stringify({ score: 20 })
-    });
-    const params = { params: { id: 'abc' } };
-    const response = await PATCH(request, params);
-    const json = await response.json();
+  // test('PATCH /api/scores/:id updates a score', async () => {
+  //   (updateDoc as jest.Mock).mockResolvedValue(undefined);
+  //   (doc as jest.Mock).mockReturnValue({});
+  //   const request = new NextRequest('http://localhost/api/scores/abc', {
+  //     method: 'PATCH',
+  //     body: JSON.stringify({ score: 20 })
+  //   });
+  //   const params = { params: { id: 'abc' } };
+  //   const response = await PATCH(request, params);
+  //   const json = await response.json();
 
-    expect(updateDoc).toHaveBeenCalledWith({}, { score: 20 });
-    expect(json.message).toBe('Score updated successfully');
-    expect(json.id).toBe('abc');
-    expect(json.score).toBe(20);
-  });
+  //   expect(updateDoc).toHaveBeenCalledWith({}, { score: 20 });
+  //   expect(json.message).toBe('Score updated successfully');
+  //   expect(json.id).toBe('abc');
+  //   expect(json.score).toBe(20);
+  // });
 
   // test('DELETE /api/scores/:id deletes a score', async () => {
   //   (deleteDoc as jest.Mock).mockResolvedValue(undefined);
