@@ -16,50 +16,56 @@ export async function POST(request: Request) {
 
     // Build HTML for the email
     const html = `
-      <div style="background-color: #000; color: #f4d03f; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif;">
-        <h1 style="text-align: center; margin-bottom: 20px;">🎉 Game Score Report 🎮</h1>
-        <p style="text-align: center; font-size: 16px; color: #f1c40f; margin-bottom: 30px;">
+  <div style="background-color: #000; color: #f4d03f; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif;">
+    <h1 style="text-align: center; margin-bottom: 20px;">🎉 Game Score Report 🎮</h1>
+    <p style="text-align: center; font-size: 16px; color: #f1c40f; margin-bottom: 30px;">
       Hi <strong>${name}</strong>, here are the results of your recent game session. Great job, and keep clicking those circles! ⭐
-        </p>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-          <thead>
-            <tr style="background-color: #333; color: #f4d03f; text-align: left;">
-              <th style="padding: 10px; border: 1px solid #f4d03f;">Name</th>
-              <th style="padding: 10px; border: 1px solid #f4d03f;">Score</th>
-              <th style="padding: 10px; border: 1px solid #f4d03f;">Stars</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${scores
-              .map((score: { name: string; score: number }, index: number) => {
-                const stars = index === 0 
-                  ? "⭐⭐⭐" 
-                  : index === 1 
-                  ? "⭐⭐" 
-                  : index === 2 
-                  ? "⭐" 
-                  : "";
-                return `
-                  <tr style="text-align: center;">
-                    <td style="padding: 10px; border: 1px solid #f4d03f;">${score.name}</td>
-                    <td style="padding: 10px; border: 1px solid #f4d03f;">${score.score}</td>
-                    <td style="padding: 10px; border: 1px solid #f4d03f; color: #f1c40f;">${stars}</td>
-                  </tr>
-                `;
-              })
-              .join("")}
-          </tbody>
-        </table>
-        <div style="text-align: center; margin-top: 20px;">
-          <p style="font-size: 14px; color: #ddd; margin-bottom: 10px;">
-            Keep practicing and aim for the highest score! Don't forget to share your achievements with friends. 🚀
-          </p>
-          <p style="font-size: 12px; color: #aaa;">
-            This email was sent automatically by the game system. If you have any questions, please contact us at <a href="mailto:support@example.com" style="color: #f4d03f;">support@example.com</a>.
-          </p>
-        </div>
-      </div>
-    `;
+    </p>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+      <thead>
+        <tr style="background-color: #333; color: #f4d03f; text-align: left;">
+          <th style="padding: 10px; border: 1px solid #f4d03f;">Name</th>
+          <th style="padding: 10px; border: 1px solid #f4d03f;">Score</th>
+          <th style="padding: 10px; border: 1px solid #f4d03f;">Stars</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${scores
+          .map((score: { name: string; score: number }, index: number) => {
+            const stars = index === 0 
+              ? "⭐⭐⭐" 
+              : index === 1 
+              ? "⭐⭐" 
+              : index === 2 
+              ? "⭐" 
+              : "";
+            return `
+              <tr style="text-align: center;">
+                <td style="padding: 10px; border: 1px solid #f4d03f;">${score.name}</td>
+                <td style="padding: 10px; border: 1px solid #f4d03f;">${score.score}</td>
+                <td style="padding: 10px; border: 1px solid #f4d03f; color: #f1c40f;">${stars}</td>
+              </tr>
+            `;
+          })
+          .join("")}
+      </tbody>
+    </table>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="https://circle-clicker-game-jan.vercel.app" style="text-decoration: none;">
+        <button style="background-color: #f4d03f; color: #000; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+          Play Now
+        </button>
+      </a>
+      <p style="font-size: 14px; color: #ddd; margin-top: 20px;">
+        Keep practicing and aim for the highest score! Don't forget to share your achievements with friends. 🚀
+      </p>
+      <p style="font-size: 12px; color: #aaa;">
+        This email was sent automatically by the game system. If you have any questions, please contact us at <a href="mailto:support@example.com" style="color: #f4d03f;">support@example.com</a>.
+      </p>
+    </div>
+  </div>
+`;
+
 
     // Send email
     await transporter.sendMail({

@@ -155,12 +155,6 @@ export default function GamePage() {
     setCircles((prev) => prev.filter((circle) => circle.id !== id));
   };
 
-  const getTimerColor = (remainingTime: number) => {
-    if (remainingTime <= 3) return "error";
-    if (remainingTime <= 5) return "warning";
-    return "success";
-  };
-
   const sortedScores = Array.isArray(scores) ? scores.sort((a, b) => b.score - a.score) : [];
 
   const highestScore = sortedScores[0];

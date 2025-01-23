@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Box } from "@mui/material";
-import html2canvas from "html2canvas";
 
 export default function EmailDialog({ scores }: { scores: any[] }) {
   const [open, setOpen] = useState(false);

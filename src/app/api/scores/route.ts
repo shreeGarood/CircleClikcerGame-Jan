@@ -1,5 +1,5 @@
 import { db } from "@/utils/firebaseConfig";
-import { collection, addDoc, getDocs ,doc, updateDoc,deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs ,doc,deleteDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 const scoresCollection = collection(db, "scores");
