@@ -209,35 +209,35 @@ export default function GamePage() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    try {
-      const response = await fetch(`/api/scores/${id}`, {
-        method: "DELETE",
-      });
+  // const handleDelete = async (id: string) => {
+  //   try {
+  //     const response = await fetch(`/api/scores/${id}`, {
+  //       method: "DELETE",
+  //     });
 
-      if (response.ok) {
-        setScores((prevScores) =>
-          prevScores.filter((score) => score.id !== id)
-        );
+  //     if (response.ok) {
+  //       setScores((prevScores) =>
+  //         prevScores.filter((score) => score.id !== id)
+  //       );
 
-        setSnackbar({
-          open: true,
-          message: "Score deleted successfully!",
-          severity: "success",
-        });
-      } else {
-        const errorData = await response.json();
-        console.error("Error response:", errorData);
-        throw new Error(errorData.error || "Failed to delete score");
-      }
-    } catch (error) {
-      setSnackbar({
-        open: true,
-        message: (error as Error).message || "An unexpected error occurred.",
-        severity: "error",
-      });
-    }
-  };
+  //       setSnackbar({
+  //         open: true,
+  //         message: "Score deleted successfully!",
+  //         severity: "success",
+  //       });
+  //     } else {
+  //       const errorData = await response.json();
+  //       console.error("Error response:", errorData);
+  //       throw new Error(errorData.error || "Failed to delete score");
+  //     }
+  //   } catch (error) {
+  //     setSnackbar({
+  //       open: true,
+  //       message: (error as Error).message || "An unexpected error occurred.",
+  //       severity: "error",
+  //     });
+  //   }
+  // };
 
   const handleClearAll = async () => {
     try {
@@ -490,7 +490,7 @@ export default function GamePage() {
                       </Button>
                       <Button
                         variant="outlined"
-                        onClick={() => handleDelete(score.id)}
+                        // onClick={() => handleDelete(score.id)}
                         sx={{
                           borderColor: "#f4d03f",
                           color: "#f4d03f",

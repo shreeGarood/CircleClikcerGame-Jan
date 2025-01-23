@@ -3,7 +3,8 @@
  */
 
 import { POST, GET, DELETE as DELETE_ALL } from '@/app/api/scores/route';
-import { PATCH, DELETE as DELETE_SINGLE } from '@/app/api/scores/[id]/route';
+// import { PATCH, DELETE as DELETE_SINGLE } from '@/app/api/scores/[id]/route';
+import { PATCH} from '@/app/api/scores/[id]/route';
 import { addDoc, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { NextRequest } from 'next/server';
 
@@ -115,18 +116,18 @@ describe('API Routes /api/scores', () => {
     expect(json.score).toBe(20);
   });
 
-  test('DELETE /api/scores/:id deletes a score', async () => {
-    (deleteDoc as jest.Mock).mockResolvedValue(undefined);
-    (doc as jest.Mock).mockReturnValue({});
-    const request = new NextRequest('http://localhost/api/scores/xyz', {
-      method: 'DELETE'
-    });
-    const params = { params: { id: 'xyz' } };
-    const response = await DELETE_SINGLE(request, params);
-    const json = await response.json();
+  // test('DELETE /api/scores/:id deletes a score', async () => {
+  //   (deleteDoc as jest.Mock).mockResolvedValue(undefined);
+  //   (doc as jest.Mock).mockReturnValue({});
+  //   const request = new NextRequest('http://localhost/api/scores/xyz', {
+  //     method: 'DELETE'
+  //   });
+  //   const params = { params: { id: 'xyz' } };
+  //   const response = await DELETE_SINGLE(request, params);
+  //   const json = await response.json();
 
-    expect(deleteDoc).toHaveBeenCalled();
-    expect(json.message).toBe('Score deleted successfully');
-    expect(json.id).toBe('xyz');
-  });
+  //   expect(deleteDoc).toHaveBeenCalled();
+  //   expect(json.message).toBe('Score deleted successfully');
+  //   expect(json.id).toBe('xyz');
+  // });
 });
