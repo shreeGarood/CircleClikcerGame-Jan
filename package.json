@@ -20,7 +20,7 @@
     "framer-motion": "^11.13.1",
     "html2canvas": "^1.4.1",
     "konva": "^9.3.16",
-    "next": "15.0.3",
+    "next": "^15.1.6",
     "nodemailer": "^6.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
