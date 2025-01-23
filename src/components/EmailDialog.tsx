@@ -1,7 +1,12 @@
 import { useState, useRef } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Box } from "@mui/material";
 
-export default function EmailDialog({ scores }: { scores: any[] }) {
+interface Score {
+    name: string;
+    score: number;
+  }
+
+export default function EmailDialog({ scores }: { scores: Score[] }) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState(""); // Add a state for the name
