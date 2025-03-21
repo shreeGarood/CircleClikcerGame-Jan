@@ -1,16 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore ,} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDbasS_EZCaUsbHRLztV7bS8ovf2oHG1zY",
-  authDomain: "circleclickergame-jan.firebaseapp.com",
-  projectId: "circleclickergame-jan",
-  storageBucket: "circleclickergame-jan.firebasestorage.app",
-  messagingSenderId: "43245655803",
-  appId: "1:43245655803:web:fd7b0d670d4006c96a425e",
-  measurementId: "G-STBQV5Z403"
+  apiKey: "AIzaSyBKjVo2dg4eImew9mHKWvvGFnxLCPKGKSQ",
+  authDomain: "circleclicker-v2.firebaseapp.com",
+  projectId: "circleclicker-v2",
+  storageBucket: "circleclicker-v2.firebasestorage.app",
+  messagingSenderId: "74169825587",
+  appId: "1:74169825587:web:b552d2b0db12b9d0aa2646",
+  measurementId: "G-7YQCDK2JNP"
 };
 
 // Initialize Firebase
@@ -19,3 +18,10 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firestore
 export const db = getFirestore(app);
 
+// Ensure Firebase Messaging is only initialized on the client-side
+export let messaging: any = null;
+if (typeof window !== "undefined") {
+  messaging = getMessaging(app);
+}
+
+export { app, getToken, onMessage };

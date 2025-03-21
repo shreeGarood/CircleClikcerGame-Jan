@@ -19,6 +19,8 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { Star } from "@mui/icons-material";
 import EmailDialog from "@/components/EmailDialog";
+import { requestNotificationPermission, onMessageListener } from "@/utils/notification";
+
 
 interface Score {
   id: string;
@@ -47,6 +49,21 @@ export default function GamePage() {
     message: "",
     severity: "success",
   });
+  const [notification, setNotification] = useState<any>(null);
+
+  useEffect(() => {
+    requestNotificationPermission().then((token) => {
+      if (token) {
+        console.log("FCM Token:", token);
+        // Send the token to your backend for future notifications
+      }
+    });
+
+    onMessageListener().then((payload) => {
+      console.log("New notification:", payload);
+      setNotification(payload);
+    });
+  }, []);
 
   useEffect(() => {
     fetch("/api/scores")
@@ -531,6 +548,7 @@ export default function GamePage() {
       <Box textAlign="right" mt={4}>
         <EmailDialog scores={scores} />
       </Box>
+      
 
       <Snackbar
         open={snackbar.open}
