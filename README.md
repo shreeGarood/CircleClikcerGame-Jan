@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Circle Clicker Game - Next.js + Firebase
 
-## Getting Started
+Welcome to Circle Clicker Game, a fun and interactive browser-based game built with Next.js, Firebase, and Material UI.
 
-First, run the development server:
+In this game, players click randomly appearing circles to score points within a limited time. The app also features a real-time leaderboard, email reporting, and Firebase Cloud Messaging for push notifications.
 
-```bash
+🔥 Features
+
+⚛️ Built with Next.js (App Router)
+
+🔐 Firebase Authentication (Email/password optional)
+
+🔥 Firestore DB to store scores
+
+📧 Email Reports (Send score reports via email)
+
+📲 Push Notifications using Firebase Cloud Messaging (FCM)
+
+🟡 Leaderboard UI using Material UI and custom styling
+
+🧠 SSR-enabled /about page that displays global game stats like total players
+
+🧩 Pages
+
+/destinations
+
+Main Gameplay Page
+
+Circle-clicking game UI
+
+Leaderboard with sorted top scores
+
+Send Email Report button
+
+EmailDialog component (to send game stats via email)
+
+/about
+
+SSR rendered
+
+About the game
+
+Total player count (fetched from Firestore)
+
+Other game insights and statistics
+
+🚀 Tech Stack
+
+Next.js (App Router)
+
+Firebase Firestore - Realtime database for storing scores
+
+Firebase Admin SDK - Used on the backend to send push notifications
+
+Firebase Cloud Messaging (FCM) - For push notifications
+
+Material UI - Components and UI
+
+Framer Motion - Circle animation
+
+🛠 Setup & Run Locally
+
+1. Clone the Repo
+
+git clone https://github.com/<your-username>/circle-clicker-game.git
+cd circle-clicker-game
+
+2. Install Dependencies
+
+npm install
+
+3. Add Environment Variables
+
+Create a .env.local file at the root and paste your Firebase and email config:
+
+EMAIL_USER=youremail@gmail.com
+EMAIL_PASS=your-email-app-password
+
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+...
+FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+
+⚠️ DO NOT push this file to GitHub! It's already ignored via .gitignore.
+
+4. Run the Dev Server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✨ Coming Soon
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Notification trigger on high scores
 
-## Learn More
+✅ Score update/delete endpoints
 
-To learn more about Next.js, take a look at the following resources:
+🔒 User authentication (optional)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📱 Mobile responsive improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📂 Folder Highlights
 
-## Deploy on Vercel
+├── app/
+│   ├── destinations/page.tsx       # Main Game UI
+│   ├── about/page.tsx             # About Page (SSR)
+├── components/EmailDialog.tsx     # Email dialog popup
+├── utils/firebaseConfig.ts        # Firebase client config
+├── utils/firebaseAdmin.ts         # Firebase admin SDK setup
+├── public/firebase-messaging-sw.js # Firebase service worker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+💻 Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pull requests are welcome! For major changes, open an issue first to discuss what you want to change.
